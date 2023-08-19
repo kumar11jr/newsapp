@@ -1,6 +1,7 @@
 import React from 'react'
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import Link from 'next/link';
+import NavLinks from './NavLinks';
 
 function Header(){
     return <header>
@@ -13,6 +14,7 @@ function Header(){
                 <button className='hidden md:inline bg-white-900 text-slate-900 px-4 lg:px-8 py-2 lg:py-4 rounded-full dark:bg-white'>Suscribe Now</button>
              </div>
         </div>
+        <NavLinks/>
         </header>
 }
 
