@@ -7,7 +7,10 @@ const fetchNews = async (
     isDynamic?: boolean
 ) => {
     const query = gql`
-    query MyQuery($access_key: String) {
+    query MyQuery(
+        $access_key: String!
+
+        ) {
         myQuery(
           access_key: $access_key
           categories: ""
@@ -48,7 +51,8 @@ const fetchNews = async (
             query,
             variables:{
                 access_key:process.env.MEDIASTACK_API_KEY,
-                
+                // category:category,
+                // keywords:keywords
             }
         })
       })
