@@ -1,4 +1,5 @@
 import { categories } from '@/constant'
+import fetchNews from '@/lib/fetchNews'
 import React from 'react'
 
 
