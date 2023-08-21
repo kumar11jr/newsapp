@@ -5,6 +5,7 @@ import React from 'react'
 
 async function HomePage(){
   const news:NewsResponse = await fetchNews(categories.join(','))
+  console.log(news)
   return <div>
     
   </div>
