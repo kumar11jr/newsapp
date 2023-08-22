@@ -2,18 +2,21 @@ import { gql } from "graphql-request"
 import sortByImage from "./sortByImage";
 
 const fetchNews = async (
+  
     category?: Category|string,
     keywords?: string,
     isDynamic?: boolean
+    
 ) => {
     const query = gql`
     query MyQuery(
         $access_key: String!,
+        $category: String!,
         $keywords: String
         ) {
         myQuery(
           access_key: $access_key
-          categories: ""
+          categories: $category,
           countries: "gb"
           sort: "published_desc"
           keywords: $keywords
@@ -39,6 +42,8 @@ const fetchNews = async (
         }
       }
     `;
+
+    
       const res = await fetch('https://lescar.stepzen.net/api/viable-rat/__graphql',{
         method:'POST',
         cache: isDynamic ? "no-cache":"default",
@@ -51,12 +56,13 @@ const fetchNews = async (
             query,
             variables:{
                 access_key:process.env.MEDIASTACK_API_KEY,
+                category:category,
                 keywords:keywords
             }
         })
       })
     //   console.log(category)
-      console.log("Loading New Data from Api for categories->",category,keywords)
+      // console.log("Loading New Data from Api for categories->",category,keywords)
       const newsResponse = await res.json()
       
       const news = sortByImage(newsResponse.data.myQuery)

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReadMore from './ReadMore'
+import LiveTime from './LiveTime'
 
 type Props = {
     article:Article
@@ -15,13 +16,13 @@ const Article = ({article}:Props) => {
       )}
       <div className='flex-1 flex flex-col' >
         <div className='flex-1 flex flex-col p-5' >
-        <h2 className='font-bold font-serif ' >{article.title}</h2>
+        <h2 className='font-bold font-serif line-clamp-3' >{article.title}</h2>
         <section className=' mt-2 flex-1 ' >
             <p className='text-xs line-clamp-3' >{article.description}</p>
         </section>
         <footer>
-            <p>{article.source} -</p>
-            <p>{article.published_at}</p>
+            <p>Source - {article.source}</p>
+            <p><LiveTime time={article.published_at}/> </p>
         </footer>
       </div>
       <ReadMore article ={article} />
