@@ -8,15 +8,15 @@ const fetchNews = async (
 ) => {
     const query = gql`
     query MyQuery(
-        $access_key: String!
-
+        $access_key: String!,
+        $keywords: String
         ) {
         myQuery(
           access_key: $access_key
           categories: ""
           countries: "gb"
           sort: "published_desc"
-          keywords: ""
+          keywords: $keywords
         ) {
           data {
             author
@@ -51,8 +51,7 @@ const fetchNews = async (
             query,
             variables:{
                 access_key:process.env.MEDIASTACK_API_KEY,
-                // category:category,
-                // keywords:keywords
+                keywords:keywords
             }
         })
       })
